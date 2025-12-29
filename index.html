@@ -162,14 +162,42 @@
       font-size: 15.5px;
       letter-spacing: 0.3px;
     }
-  </style>
+  .testimonial-slider {max-width: 800px;margin: auto;position: relative;text-align: center;}
+.testimonial {display: none;background: white;padding: 35px 30px;border-radius: 18px;box-shadow: 0 12px 30px rgba(0,0,0,0.1);} 
+.testimonial.active {display: block;} 
+.testimonial p {font-size: 18px;margin-bottom: 18px;color: #333;} 
+.testimonial span {font-weight: 600;color: #5a1515;} 
+.stars {color: #f1c40f;font-size: 22px;margin-bottom: 14px;letter-spacing: 2px;}
+.google-label {font-weight: 700;color: #4285F4;margin-bottom: 18px;font-size: 18px;}
+.nav-btn {position: absolute;top: 50%;transform: translateY(-50%);background: #173a29;color: white;border: none;border-radius: 50%;width: 42px;height: 42px;font-size: 22px;cursor: pointer;box-shadow: 0 6px 14px rgba(0,0,0,0.2);} 
+.nav-btn.prev {left: -20px;} 
+.nav-btn.next {right: -20px;} 
+.nav-btn:hover {background: #f1c40f;color: #173a29;}
+</style>
+<script>
+  let index = 0;
+  const testimonials = document.querySelectorAll('.testimonial');
+  function showTestimonial(i) {
+    testimonials.forEach(t => t.classList.remove('active'));
+    testimonials[i].classList.add('active');
+  }
+  function changeTestimonial(step) {
+    index = (index + step + testimonials.length) % testimonials.length;
+    showTestimonial(index);
+  }
+  setInterval(() => changeTestimonial(1), 5000);(() => {
+    testimonials[index].classList.remove('active');
+    index = (index + 1) % testimonials.length;
+    testimonials[index].classList.add('active');
+  }, 5000);
+</script>
 </head>
 <body>
 
   <header>
     <!-- Replace src with your logo file path if hosting locally -->
     <img src="wlogo.png" alt="Westown Food & Liquor Logo" />
-    <p>Your Neighborhood Stop for Food, Drinks & Convenience</p>
+    <p><strong>Racine’s go-to neighborhood store</strong> for cold drinks, fresh snacks, and everyday essentials — fast, friendly, and always convenient.</p>
   </header>
 
   <div style="background:#f1c40f;color:#1f1f1f;text-align:center;padding:12px 10px;font-weight:700;">🔥 Weekly Deals Available — Stop In or Call for Today’s Specials!</div>
@@ -182,9 +210,9 @@
   </nav>
 
   <section class="hero">
-    <h1>Everything You Need, Right Around the Corner</h1>
-    <p>Cold drinks, fresh food, and everyday essentials</p>
-    <a href="#" class="cta">View Weekly Specials</a>
+    <h1>Your Quick Stop for Quality & Convenience</h1>
+    <p>From ice-cold beer and top liquor brands to snacks, groceries, and daily essentials — Westown Food & Liquor has what you need, when you need it.</p>
+    <a href="#reviews" class="cta">⭐ See Why Racine Shops With Us</a>
   </section>
 
   <section class="section">
@@ -192,15 +220,39 @@
     <div class="grid">
       <div class="card">
         <h3>Beer, Wine & Spirits</h3>
-        <p>Wide selection of local and popular brands.</p>
+        <p>Cold beer, trusted liquor brands, and popular favorites — stocked daily so you never leave empty-handed.</p>
       </div>
       <div class="card">
         <h3>Groceries & Snacks</h3>
-        <p>Fresh food, snacks, and everyday essentials.</p>
+        <p>From quick bites to household must-haves, we make everyday shopping fast and easy.</p>
       </div>
       <div class="card">
         <h3>Convenience Items</h3>
-        <p>Quick stops made easy, open for your schedule.</p>
+        <p>Running late? Forgot something? Stop in and get what you need without the hassle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reviews">
+    <h2>Customer Reviews</h2>
+    <div class="testimonial-slider">
+      <div class="google-label">⭐ Reviews from Google</div>
+      <button class="nav-btn prev" onclick="changeTestimonial(-1)">‹</button>
+      <button class="nav-btn next" onclick="changeTestimonial(1)">›</button>
+      <div class="testimonial active">
+        <div class="stars">★★★★★</div>
+        <p>“It is the best neighborhood bodega — they have the best ice, my favorite drinks, and the people are very hospitable.”</p>
+        <span>— Local Customer, Racine WI</span>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>“My neighborhood corner store! A little bit of everything you might need and a friendly staff.”</p>
+        <span>— Verified Google Review</span>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>“One of the only places that carries what my family needs. Super convenient and always helpful.”</p>
+        <span>— Racine Customer</span>
       </div>
     </div>
   </section>
@@ -208,11 +260,12 @@
   <section class="info">
     <h2>About Westown Food & Liquor</h2>
     <p>
-      Westown Food & Liquor is a locally owned neighborhood store proudly serving <strong>Racine, WI</strong>.
-      We offer a wide selection of beer, wine, spirits, snacks, groceries, and everyday essentials—all in one convenient stop.
-      Our mission is simple: provide quality products, fair prices, and friendly service you can count on.
-      Whether you’re grabbing a quick item or stocking up for the weekend, Westown Food & Liquor is here for you.
+      Locally owned and proudly serving <strong>Racine, WI</strong>, Westown Food & Liquor is built around one simple promise: make your stop fast, friendly, and worth it.
+      Customers come to us for our wide selection, fair prices, and welcoming service — and they keep coming back because we treat everyone like a neighbor.
+      Whether you’re grabbing something quick or stocking up for the night or weekend, we’re ready when you are.
     </p>
+    <br />
+    <p style="font-size:20px;font-weight:700;color:#173a29;">Stop in today and see why Racine shops local.</p>
     <br />
     <a href="tel:12626332655" class="cta">📞 Call Now: (262) 633-2655</a>
   </section>
